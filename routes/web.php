@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/getride','PagesController@getride');
+Route::get('/giveride','PagesController@giveride');
 
 Auth::routes();
 
