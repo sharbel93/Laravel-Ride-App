@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\PostRide;
 class PagesController extends Controller
 {
     public function index(){
-        return view('pages.index');
+        $posts = PostRide::all();
+        return view('pages.index')->with('posts', $posts);
+
     }
 
     public function getride() {

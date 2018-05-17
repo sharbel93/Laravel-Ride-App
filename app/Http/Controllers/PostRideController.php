@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\PostRide;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RideMessages;
 
 class PostRideController extends Controller
 {
@@ -16,6 +18,7 @@ class PostRideController extends Controller
      */
     public function __construct()
     {
+
         $this->middleware('auth');
     }
 
@@ -27,6 +30,9 @@ class PostRideController extends Controller
      */
     public function index()
     {
+//        $user = auth()->user();
+//        \Mail::to($user)->send(new RideMessages($user));
+
         $posts = PostRide::all();
         return view('pages.getride')->with('posts', $posts);
     }
@@ -111,5 +117,13 @@ class PostRideController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mail()
+    {
+
+        $user = auth()->user();
+        Mail::to($user)->send(new RideMessages($user));
+        return 'Email was sent';
     }
 }
