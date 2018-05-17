@@ -3,7 +3,6 @@
 
 
 
-@auth
     <h1>Get A ride</h1>
     @if(count($posts) > 0)
 
@@ -37,6 +36,6 @@
         <p> No posts found.</p>
     @endif
 
-@endauth
+
 
 @endsection
