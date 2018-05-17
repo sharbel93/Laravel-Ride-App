@@ -3,9 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PostRide;
+
 
 class PostRideController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +27,8 @@ class PostRideController extends Controller
      */
     public function index()
     {
-        //
+        $posts = PostRide::all();
+        return view('pages.getride')->with('posts', $posts);
     }
 
     /**
@@ -23,7 +38,7 @@ class PostRideController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.giveride');
     }
 
     /**
@@ -34,7 +49,23 @@ class PostRideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation
+
+        $this->validate($request,[
+            'origin' => 'required',
+            'destination' => 'required',
+            'capacity' => 'required|max:2'
+        ]);
+
+//        // Create postride posts
+        $post = new PostRide;
+        $post->origin = $request->input('origin');
+        $post->destination = $request->input('origin');
+        $post->capacity = $request->input('capacity');
+        $post->user_id = auth()->user()->id;
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Your Ride has Been Created '); // redirect after getting the details followed with a success message
     }
 
     /**

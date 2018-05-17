@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Get the ride details associated with the user.
+     */
+    public function ride()
+    {
+        return $this->hasOne('App\PostRide');
+    }
 }

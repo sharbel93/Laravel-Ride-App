@@ -26,9 +26,9 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ url('/giveride') }}"> Give A Ride</a>
+                            <a class="dropdown-item" href="/posts/create"> Give A Ride</a>
                             <hr>
-                            <a class="dropdown-item" href="{{ url('/getride') }}"> Get A Ride</a>
+                            <a class="dropdown-item" href="/posts"> Get A Ride</a>
                             <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();

@@ -12,9 +12,10 @@
 */
 
 Route::get('/', 'PagesController@index');
-Route::get('/getride','PagesController@getride');
-Route::get('/giveride','PagesController@giveride');
+//Route::get('/getride','PagesController@getride');
+//Route::get('/giveride','PagesController@giveride');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('posts', 'PostRideController');

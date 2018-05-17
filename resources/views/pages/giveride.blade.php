@@ -15,18 +15,18 @@
      <div class="row">
          <div class="col-md-12">
              <p><h5>Enter the following Details</h5></p>
-             {!! Form::open([ 'method' => 'POST' ]) !!}
+             {!! Form::open([ 'action' => 'PostRideController@store','method' => 'POST' ]) !!}
              <div class="form-group">
-                 {{ Form::label('title', 'Origin') }}
-                 {{ Form::text('title','',['class' => 'form-control', 'placeholder' => 'Origin']) }}
+                 {{ Form::label('origin', 'Origin') }}
+                 {{ Form::text('origin','',['class' => 'form-control', 'placeholder' => 'Origin']) }}
              </div>
              <div class="form-group">
-                 {{ Form::label('title', 'Destination') }}
-                 {{ Form::text('title','',['class' => 'form-control', 'placeholder' => 'Destination']) }}
+                 {{ Form::label('destination', 'Destination') }}
+                 {{ Form::text('destination','',['class' => 'form-control', 'placeholder' => 'Destination']) }}
              </div>
              <div class="form-group">
-                 {{ Form::label('title', 'Capacity') }}
-                 {{ Form::text('title','',['class' => 'form-control', 'placeholder' => 'Capacity']) }}
+                 {{ Form::label('capacity', 'Capacity') }}
+                 {{ Form::number('capacity','',['class' => 'form-control', 'placeholder' => 'Capacity']) }}
              </div>
              {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
              {!! Form::close() !!}
