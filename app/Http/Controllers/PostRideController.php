@@ -105,7 +105,23 @@ class PostRideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+           'origin' => 'required',
+           'destination'=>'required',
+           'capacity' => 'required'
+        ]);
+
+        // Create postride posts
+        $post = new PostRide;
+        $post->origin = $request->input('origin');
+        $post->destination = $request->input('origin');
+        $post->capacity = $request->input('capacity');
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Updated '); // redirect after getting the details followed with a success message
+
+
+
     }
 
     /**
@@ -122,8 +138,12 @@ class PostRideController extends Controller
     public function mail()
     {
 
+
         $user = auth()->user();
         Mail::to($user)->send(new RideMessages($user));
         return 'Email was sent';
+
+
+
     }
 }

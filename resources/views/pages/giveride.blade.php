@@ -19,14 +19,18 @@
              <div class="form-group">
                  {{ Form::label('origin', 'Origin') }}
                  {{ Form::text('origin','',['class' => 'form-control', 'placeholder' => 'Origin']) }}
+                 <span class="text-danger">{{ $errors->first('origin') }}</span>
              </div>
              <div class="form-group">
                  {{ Form::label('destination', 'Destination') }}
                  {{ Form::text('destination','',['class' => 'form-control', 'placeholder' => 'Destination']) }}
+                 <span class="text-danger">{{ $errors->first('destination') }}</span>
+
              </div>
              <div class="form-group">
                  {{ Form::label('capacity', 'Capacity') }}
                  {{ Form::number('capacity','',['class' => 'form-control', 'placeholder' => 'Capacity']) }}
+                 <span class="text-danger">{{ $errors->first('destination') }}</span>
              </div>
              {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
              {!! Form::close() !!}

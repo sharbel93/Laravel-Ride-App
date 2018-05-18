@@ -14,7 +14,7 @@
 Route::get('/', 'PagesController@index');
 //Route::get('/getride','PagesController@getride');
 //Route::get('/giveride','PagesController@giveride');
-Route::get('/send/email', 'PostRideController@mail');
+Route::get('/send/email', 'PostRideController@mail')->name('posts.store');
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');

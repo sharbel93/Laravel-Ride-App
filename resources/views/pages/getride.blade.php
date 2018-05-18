@@ -18,17 +18,20 @@
             </tr>
             </thead>
             <tbody>
+            {!! Form::open(['action'=>'PostRideController@mail','url'=>'send/email','method'=>'POST' ]) !!}
             @foreach($posts as $post)
+
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
-                    <td>{{ $post->origin }}</td>
-                    <td>{{ $post->destination }}</td>
-                    <td>{{ $post->capacity }}</td>
-                    <td>{{ $post->user['name']  }}</td>
-                    <td> <button type="button" class="btn btn-success">Book</button></td>
+                    <td>{{ $post->origin }}{!! Form::text('origin', $post->id, ['input type' => 'hidden']) !!}</td>
+                    <td>{{ $post->destination }}{!! Form::text('destination', $post->destination, ['input type' => 'hidden']) !!}</td>
+                    <td>{{ $post->capacity }}{!! Form::text('capacity', $post->capacity, ['input type' => 'hidden']) !!}</td>
+                    <td>{{ $post->user['name']  }}{!! Form::text('username', $post->user['name'], ['input type' => 'hidden']) !!}</td>
+                    <td>{{ Form::submit('Book', ['class' => 'btn btn-primary btn-success'])  }}</td>
                 </tr>
-            @endforeach
 
+            @endforeach
+            {!! Form::close() !!}
             </tbody>
         </table>
 

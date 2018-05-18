@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
+use App\PostRide;
 
 class RideMessages extends Mailable
 {
@@ -30,12 +31,12 @@ class RideMessages extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build( )
     {
 
-        $address = 'ignore@batcave.io';
-        $name = 'Ignore Me';
-        $subject = 'Krytonite Found';
+        $address = 'info@shareinc.com';
+        $name = 'Sharbel Chris';
+        $subject = 'Ride Confirmation ';
         return $this->view('emails.messagesride')
             ->from($address, $name)
             ->cc($address, $name)
