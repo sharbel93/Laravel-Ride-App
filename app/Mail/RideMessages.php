@@ -15,16 +15,20 @@ class RideMessages extends Mailable
 
 
     public $user;
+    public $posts;
 
     /**
          * Create a new message instance.
          *
          * @return void
          */
-    public function __construct(User $user)
+    public function __construct( PostRide $postRide)
     {
-        $this->user = $user;
+
+        $this->posts = $postRide;
     }
+
+
 
     /**
      * Build the message.

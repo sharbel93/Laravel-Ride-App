@@ -93,7 +93,14 @@ class PostRideController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = PostRide::find($id);
+
+//        // Check for correct user
+//        if(auth()->user()->id !== $post->user_id){
+//            return redirect('/posts')->with('error', 'Unauthorized Page');
+//        }
+
+        return view('pages.bookride')->with('posts',$post);
     }
 
     /**
@@ -112,13 +119,23 @@ class PostRideController extends Controller
         ]);
 
         // Create postride posts
-        $post = new PostRide;
+//        $post = new PostRide;
+        $post = PostRide::find($id);
         $post->origin = $request->input('origin');
         $post->destination = $request->input('origin');
         $post->capacity = $request->input('capacity');
-        $post->save();
+        $post->user['name'] = $request->input('username');
+        $post->user_id = auth()->user()->id;
 
-        return redirect('/posts')->with('success', 'Updated '); // redirect after getting the details followed with a success message
+        $user = auth()->user();
+        Mail::to($user)->send(new RideMessages($post));
+
+
+//        return $post;
+
+
+//        return $post->origin;
+        return redirect('/posts')->with('success', ' Email Sent'); // redirect after getting the details followed with a success message
 
 
 
@@ -139,9 +156,6 @@ class PostRideController extends Controller
     {
 
 
-        $user = auth()->user();
-        Mail::to($user)->send(new RideMessages($user));
-        return 'Email was sent';
 
 
 

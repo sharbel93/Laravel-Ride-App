@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    {{-- Only guest users should access --}}
     @guest
         <h1>Get A ride</h1>
         @if(count($posts) > 0)
@@ -34,7 +35,7 @@
         @endif
     @endguest
 
-
+{{-- Only authourized users should access --}}
     @auth
         <h1>Get A ride</h1>
         @if(count($posts) > 0)
@@ -58,7 +59,7 @@
                         <td>{{ $post->destination }}</td>
                         <td>{{ $post->capacity }}</td>
                         <td>{{ $post->user['name']  }}</td>
-                        <td> <button type="button" class="btn btn-success">Book</button></td>
+                        <td><a href="/posts/{{ $post->id }}/edit" class="btn btn-success">Book</a></td>
                     </tr>
                 @endforeach
 
